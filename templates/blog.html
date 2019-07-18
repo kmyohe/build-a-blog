@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 style="text-align: center">Kacie's Blog</h1>
+
+<hr />
+
+{% if blog|length == 0 %}
+<p>No Blogs Yet</p>
+{% else %}
+
+    <ul>
+        {% for blog in blog %}
+        <form method="POST">
+            
+            <a style="font-size: 20px; padding-bottom: 50px;" name="blog_name" href="/full_blog?id={{blog.id}}" >{{blog.blog_name}}
+                <input type="hidden" name="blog_id" value="{{blog.id}}" />
+                <br />
+            </a>
+            <p style="color: darkgray; font-size: 10px"><input type="hidden" name="author" value="{{blog.author}}" /> by: {{blog.author}}</p>
+        </form>
+        <br/>
+        <a><input type="hidden" name="blog" value="{{blog.blog}}" /> {{blog.blog}}</a>
+        <br/>
+        <br />
+        <br/>
+        {% endfor %}
+    </ul>
+
+<hr />
+
+{% endif %}
+
+
+{% endblock %}
